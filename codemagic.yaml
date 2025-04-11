@@ -1,0 +1,14 @@
+workflows:
+  ios-workflow:
+    name: iOS Battery App Build
+    environment:
+      xcode: latest
+      vars:
+        XCODE_PROJECT: "battery_status_app.xcodeproj"
+    scripts:
+      - name: Build iOS app
+        script: |
+          xcodebuild -project "$XCODE_PROJECT" -scheme "battery_status_app" -sdk iphoneos -configuration Release build
+    artifacts:
+      - build/ios/Release-iphoneos/*.app
+      - build/ios/Release-iphoneos/*.ipa
